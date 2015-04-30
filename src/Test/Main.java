@@ -11,8 +11,8 @@ public class Main  {
 	public static void main(String[] args) {
 		GameThread run = new GameThread();
 		run.start();
-		c1 = new Circle(50 ,50, 50, new Float(0.4), 200);
-		c2 = new Circle(500, 20, 150, new Float(0.4),300);
+		c1 = new Circle(50 ,50, 50, new Float(1), 10);
+		c2 = new Circle(500, 20, 150, new Float(1),200);
 		c1.setVelocity(5,-0.5);
 		run.addObserver(c1);
 		run.addObserver(c2);

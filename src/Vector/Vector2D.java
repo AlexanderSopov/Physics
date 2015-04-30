@@ -77,7 +77,10 @@ public class Vector2D extends Point2D {
 		return "x = " + x + ". y = " + y;
 	}
 	
-	
+	public Vector2D makeUnitVector(){
+		double length = length();
+		return new Vector2D(x/length, y/length);
+	}
 	
 	
 }
