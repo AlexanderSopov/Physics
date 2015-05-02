@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 
 public class Frame  extends JFrame {
 		
-	public final static int WIDTH = 1000;
-	public final static int HEIGHT = 600;
+	public final static int WIDTH = 1600;
+	public final static int HEIGHT = 1000;
 		
 	public Frame(){
 		super("Yolo");
