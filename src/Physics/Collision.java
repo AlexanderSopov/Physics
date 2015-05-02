@@ -1,9 +1,5 @@
 package Physics;
 
-import java.awt.Point;
-import java.awt.Shape;
-import java.awt.geom.RectangularShape;
-
 import GameObject.BoundingBox;
 import GameObject.Circle;
 
@@ -40,28 +36,12 @@ public class Collision {
 
 
 	public static void resolveCollision(Circle a, Circle b){
-		double invMassA = 1/(double)a.mass;
-		double invMassB = 1/(double)b.mass;
 		
 		
-		Vector2D normal = (subtract(b.getCenter(), a.getCenter())).makeUnitVector();
+		Vector2D normal = getNormal(b.getCenter(), a.getCenter());
 		Vector2D relativeVelocity = subtract(b.getVelocity(),a.getVelocity());
 		
 		double velocityAlongNormalVector = relativeVelocity.dotProduct(normal);
-		
-		
-		// Printing for error-checking!
-		/*
-		System.out.println(
-				"inverse Mass A = " + invMassA+"\n"+
-				"inverse Mass B = " + invMassB+"\n"+
-				"aVel = " + a.getVelocity().toString() +"\n"+
-				"bVel = " + b.getVelocity().toString()+"\n"+
-				"normal = " + normal.toString()+"\n"+
-				"relativeVel = " + relativeVelocity.toString() +"\n"+
-				"Relative velocity along normal = " + velocityAlongNormalVector
-				);
-		*/
 		
 		
 		if (velocityAlongNormalVector == 0)	// true if objects are already moving away from each other
@@ -70,32 +50,40 @@ public class Collision {
 		
 		double e = min(a.restitution, b.restitution); // the object with less "bounciness" wins
 		
+		double j = -(1 + e) * velocityAlongNormalVector; // calculate an impulse scalar
 		
-		double j = -(1 + e) * velocityAlongNormalVector; //
 		
-		System.out.println("j = " + j);
+		j /= (a.invMass + b.invMass);
 		
-		j /= (invMassA + invMassB);
-		
-		System.out.println("j2 = " + j);
+		//System.out.println("j2 = " + j);
 		
 		Vector2D impulse = normal.scale(j);
 		
-		a.setVelocity(a.getVelocity().subtractWith(
-				impulse.scale(invMassA)
-				));
-		
-		b.setVelocity(b.getVelocity().addWith(
-				impulse.scale(invMassB)
-				));
+		setVelocityToRatio(a,b,impulse);
 		
 	}
-	
+
+	private static Vector2D getNormal(Vector2D v, Vector2D u) {
+		Vector2D normal = subtract(v,u);
+		normal = normal.makeUnitVector();
+		return normal;
+	}
+
+
+	private static void setVelocityToRatio(Circle a, Circle b, Vector2D impulse) {
+		Vector2D scaledImpulse = impulse.scale(a.invMass);
+		Vector2D newVelocity = a.getVelocity().subtractWith(scaledImpulse);
+		a.setVelocity(newVelocity);
+
+		scaledImpulse = impulse.scale(b.invMass);
+		newVelocity = b.getVelocity().addWith(scaledImpulse);
+		b.setVelocity(newVelocity);
+	}
+
 
 	private static Vector2D subtract(Vector2D b, Vector2D a){
 		return  b.subtractWith(a);
 	}
-	
 	
 	private static double min(double a, double b){
 		if(a>b)
@@ -103,5 +91,4 @@ public class Collision {
 		else
 			return a;
 	}
-
 }

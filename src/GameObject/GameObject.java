@@ -11,13 +11,15 @@ public abstract class GameObject implements Observer {
 	private Vector2D velocity; //vector array
 	private RectangularShape shape;
 	public double restitution;
-	public int mass;
+	public double mass;
+	public double invMass;
 	//private static final GameThread gt = PhysicsTest.run;
 	
 	public GameObject(RectangularShape s, double restitution, int mass){
 		shape = s;
 		this.restitution=restitution;
-		this.mass=mass;
+		this.mass = mass;
+		invMass = 1/(double)mass;
 	}
 	
 	public abstract void render(Graphics2D g);

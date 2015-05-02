@@ -8,10 +8,19 @@ import Physics.Collision;
 import Physics.Vector2D;
 
 public class Physics implements Observer {
-	private static final Vector2D gravity = new Vector2D(0, 0.05);
+	
+	private static final Vector2D gravity = new Vector2D(0, 0.3);
 	private static Circle c1 = Main.c1;
 	private static Circle c2 = Main.c2;
 	private static int update = 0;
+	
+	
+	public Physics(){
+		c1.setVelocity(18,-4);
+	}
+	
+	
+	
 	public void update(Observable arg0, Object arg1) {
 		if(Collision.areCirclesColliding(c1, c2))
 			Collision.resolveCollision(c1,c2);
