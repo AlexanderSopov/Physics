@@ -19,9 +19,16 @@ public abstract class GameObject implements Observer {
 		shape = s;
 		this.restitution=restitution;
 		this.mass = mass;
-		invMass = 1/(double)mass;
+		setInvMass(mass);;
 	}
 	
+	private void setInvMass(int m) {
+		if (mass == 0)
+			invMass = 0;
+		else
+			invMass = 1/(double)mass;
+	}
+
 	public abstract void render(Graphics2D g);
 	public void update(Observable o, Object arg){
 		try {

@@ -7,7 +7,7 @@ import java.awt.geom.Point2D;
 
 import Physics.Vector2D;
 
-public class Circle extends GameObject {
+public class Circle extends Entity {
 	
 	private Ellipse2D.Double shape;
 	private int radius;
@@ -33,6 +33,7 @@ public class Circle extends GameObject {
 	}
 
 	public void update() {
+		super.update();
 		setLocation(getVelocity().addWith(getLocation()));
 	}
 
