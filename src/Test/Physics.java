@@ -5,7 +5,7 @@ import java.util.Observer;
 
 import GameObject.Circle;
 import Physics.Collision;
-import Vector.Vector2D;
+import Physics.Vector2D;
 
 public class Physics implements Observer {
 	private static final Vector2D gravity = new Vector2D(0, 0.05);

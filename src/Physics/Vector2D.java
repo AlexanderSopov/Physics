@@ -1,4 +1,4 @@
-package Vector;
+package Physics;
 
 import java.awt.geom.Point2D;
 

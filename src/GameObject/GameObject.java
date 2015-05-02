@@ -5,7 +5,7 @@ import java.awt.geom.RectangularShape;
 import java.util.Observable;
 import java.util.Observer;
 
-import Vector.Vector2D;
+import Physics.Vector2D;
 
 public abstract class GameObject implements Observer {
 	private Vector2D velocity; //vector array

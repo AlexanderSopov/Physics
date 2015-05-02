@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
-import Vector.Vector2D;
+import Physics.Vector2D;
 
 public class Circle extends GameObject {
 	

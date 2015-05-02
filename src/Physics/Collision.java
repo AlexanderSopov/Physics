@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.awt.Shape;
 import java.awt.geom.RectangularShape;
 
-import Vector.Vector2D;
 import GameObject.BoundingBox;
 import GameObject.Circle;
 
@@ -52,6 +51,7 @@ public class Collision {
 		
 		
 		// Printing for error-checking!
+		/*
 		System.out.println(
 				"inverse Mass A = " + invMassA+"\n"+
 				"inverse Mass B = " + invMassB+"\n"+
@@ -61,7 +61,7 @@ public class Collision {
 				"relativeVel = " + relativeVelocity.toString() +"\n"+
 				"Relative velocity along normal = " + velocityAlongNormalVector
 				);
-		
+		*/
 		
 		
 		if (velocityAlongNormalVector == 0)	// true if objects are already moving away from each other
