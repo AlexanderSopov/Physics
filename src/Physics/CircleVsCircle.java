@@ -25,19 +25,18 @@ public class CircleVsCircle implements CollisionDetective {
 
 	@Override
 	public void resolveCollision() {
+		
 		Vector2D normal = subtract(b.getCenter(), a.getCenter());
 		Vector2D relativeVelocity = subtract(b.getVelocity(),a.getVelocity());
 		double distance = normal.length();
 		double penetration;
-		System.out.println(distance);
-		System.out.println(a.getRadius()+b.getRadius());
 		
 		if(distance == 0){
 			penetration = a.getRadius();
 			normal = new Vector2D(1,0);
 		}else{
 			penetration = (a.getRadius() + b.getRadius()) - distance;
-			normal = normal.scale(1/distance);
+			normal = makeUnitVector(normal, distance);
 		}
 		
 
@@ -51,6 +50,10 @@ public class CircleVsCircle implements CollisionDetective {
 
 	}
 	
+
+	private Vector2D makeUnitVector(Vector2D normal, double distance) {
+		return normal.scale(1/distance);
+	}
 
 	private void correctCircles(Vector2D normal, double velNormal, 
 								double penetration) {	

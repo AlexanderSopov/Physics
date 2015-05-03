@@ -6,9 +6,9 @@ import java.awt.geom.Rectangle2D;
 
 import Vector.Vector2D;
 
-public class StaticBox extends GameObject {
+public class Box extends Entity {
 	private Rectangle2D.Double shape;
-	public StaticBox(int x, int y, int width, int height, float r, int mass) {
+	public Box(int x, int y, int width, int height, float r, int mass) {
 		super(new Rectangle2D.Double(x,y,width,height), r, mass);
 		setRestitution(r);
 		shape = (Rectangle2D.Double)getShape();

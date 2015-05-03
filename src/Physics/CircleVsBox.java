@@ -1,13 +1,13 @@
 package Physics;
 
 import Vector.Vector2D;
-import GameObject.StaticBox;
+import GameObject.Box;
 import GameObject.Circle;
 
 public class CircleVsBox implements CollisionDetective {
 	private final Circle a;
-	private final StaticBox b;
-	public CircleVsBox(Circle a, StaticBox b){
+	private final Box b;
+	public CircleVsBox(Circle a, Box b){
 		this.a=a;
 		this.b=b;
 	}
