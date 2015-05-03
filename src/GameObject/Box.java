@@ -12,6 +12,7 @@ public class Box extends Entity {
 		super(new Rectangle2D.Double(x,y,width,height), r, mass);
 		setRestitution(r);
 		shape = (Rectangle2D.Double)getShape();
+		setVelocity(0,-1);
 	}
 	
 	@Override
@@ -22,7 +23,8 @@ public class Box extends Entity {
 
 	@Override
 	public void update() {
-		setLocation(getLocation().addWith(new Vector2D(0,-1)));
+		super.update();
+		setLocation(getLocation().addWith(getVelocity()));
 		
 	}
 
@@ -41,7 +43,7 @@ public class Box extends Entity {
 	public Vector2D getCenter() {
 		double x = (shape.getX() + shape.getWidth())/2;
 		double y = (shape.getY() + shape.getHeight())/2;
-		return new Vector2D(x,y);
+		return getLocation().addWith(new Vector2D(x,y));
 	}
 
 	

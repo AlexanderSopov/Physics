@@ -21,7 +21,7 @@ public abstract class Entity extends GameObject {
 		return velocity;
 	}
 	public void setVelocity(double x, double y){
-		velocity.setLocation(x,y);
+		setVelocity(new Vector2D(x,y));
 	}
 	public void setVelocity(Vector2D v){
 		velocity = v;
