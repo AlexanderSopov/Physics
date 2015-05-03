@@ -7,7 +7,7 @@ import java.awt.geom.RectangularShape;
 import java.util.Observable;
 import java.util.Observer;
 
-import Physics.Vector2D;
+import Vector.Vector2D;
 
 public abstract class GameObject implements Observer {
 	private RectangularShape shape;

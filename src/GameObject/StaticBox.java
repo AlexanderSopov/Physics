@@ -2,11 +2,9 @@ package GameObject;
 
 
 import java.awt.Graphics2D;
-
-
 import java.awt.geom.Rectangle2D;
 
-import Physics.Vector2D;
+import Vector.Vector2D;
 
 public class StaticBox extends GameObject {
 	private Rectangle2D.Double shape;

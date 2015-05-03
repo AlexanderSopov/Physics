@@ -3,7 +3,7 @@ package GameObject;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 
-import Physics.Vector2D;
+import Vector.Vector2D;
 
 public class Circle extends Entity {
 	

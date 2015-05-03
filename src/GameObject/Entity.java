@@ -2,7 +2,7 @@ package GameObject;
 
 import java.awt.geom.RectangularShape;
 
-import Physics.Vector2D;
+import Vector.Vector2D;
 
 public abstract class Entity extends GameObject {
 	private Vector2D velocity; //vector array

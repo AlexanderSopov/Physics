@@ -6,7 +6,7 @@ import java.util.Observer;
 import GameObject.Circle;
 import Physics.Collision;
 import Physics.CollisionStrategy;
-import Physics.Vector2D;
+import Vector.Vector2D;
 
 public class Physics implements Observer {
 	

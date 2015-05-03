@@ -1,5 +1,6 @@
 package Physics;
 
+import Vector.Vector2D;
 import GameObject.StaticBox;
 import GameObject.Circle;
 
