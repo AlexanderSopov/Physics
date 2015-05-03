@@ -60,8 +60,4 @@ public class Circle extends Entity {
 		shape.x=x;
 		shape.y=y;
 	}
-
-	public void setLocation(Point2D p){
-		setLocation(p.getX(), p.getY());
-	}
 }
