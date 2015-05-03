@@ -68,9 +68,8 @@ public class Vector2D extends Point2D {
 		return new Vector2D(x-p.getX(), y-p.getY());
 	}
 	
-	public void turnNegative(){
-		x = -x;
-		y = -y;
+	public Vector2D returnNegative(){
+		return new Vector2D(-x,-y);
 	}
 	
 	public String toString(){

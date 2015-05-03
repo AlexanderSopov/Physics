@@ -16,24 +16,24 @@ public class Physics implements Observer {
 	
 	
 	public Physics(){
-		c1.setVelocity(18,-4);
-		c3.setVelocity(-1, -45);
+		c1.setVelocity(22,-5);
+		c3.setVelocity(-1, -40);
 	}
 	
 	
 	
 	public void update(Observable arg0, Object arg1) {
-		CollisionStrategy strategy = new CollisionStrategy(c2,c1);
+		CollisionStrategy strategy = new CollisionStrategy(c1,c2);
 		if (strategy.areObjectsColliding())
 			strategy.resolveCollision();
 		
-		strategy = new CollisionStrategy(c3,c2);
+		strategy = new CollisionStrategy(c2,c3);
 		if (strategy.areObjectsColliding())
 			strategy.resolveCollision();
 
-		strategy = new CollisionStrategy(c1,c3);
+		/*strategy = new CollisionStrategy(c1,c3);
 		if (strategy.areObjectsColliding())
 			strategy.resolveCollision();
-
+*/
 	}
 }

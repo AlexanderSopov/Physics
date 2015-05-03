@@ -24,31 +24,66 @@ public class CircleVsCircle implements CollisionDetective {
 
 	@Override
 	public void resolveCollision() {
-		Vector2D normal = getNormal(b.getCenter(), a.getCenter());
+		Vector2D normal = subtract(b.getCenter(), a.getCenter());
 		Vector2D relativeVelocity = subtract(b.getVelocity(),a.getVelocity());
+		double distance = normal.length();
+		double penetration;
+		System.out.println(distance);
+		System.out.println(a.getRadius()+b.getRadius());
 		
+		if(distance == 0){
+			penetration = a.getRadius();
+			normal = new Vector2D(1,0);
+		}else{
+			penetration = (a.getRadius() + b.getRadius()) - distance;
+			normal = normal.scale(1/distance);
+		}
+		
+
 		double velocityAlongNormalVector = relativeVelocity.dotProduct(normal);
-		
 		
 		if (velocityAlongNormalVector == 0)	// true if objects are already moving away from each other
 			return; 						// and thus, we break.
 		
-		
-		double e = min(a.restitution, b.restitution); // the object with less "bounciness" wins
-		
-		double j = -(1 + e) * velocityAlongNormalVector; // calculate an impulse scalar
-		
-		
-		j /= (a.invMass + b.invMass);
-		
-		//System.out.println("j2 = " + j);
-		
-		Vector2D impulse = normal.scale(j);
-		
-		setVelocityToRatio(a,b,impulse);
+		correctCircles(normal, velocityAlongNormalVector, penetration);
+
 
 	}
 	
+
+	private void correctCircles(Vector2D normal, double velNormal, 
+								double penetration) {	
+		correctPositions(normal, velNormal, penetration);
+		Vector2D impulse = calculateImpulse(normal, velNormal);
+		setVelocityToRatio(impulse);
+
+	}
+
+	
+	
+	private Vector2D calculateImpulse(Vector2D normal, double velNormal) {
+		double e = min(a.restitution, b.restitution); // the object with less "bounciness" wins
+		double j = -(1 + e) * velNormal; // calculate an impulse scalar
+		
+		j /= (a.invMass + b.invMass);
+		
+		return normal.scale(j);
+	}
+
+	private void correctPositions(Vector2D normal, double velNormal,
+			double penetration) {
+		double percent = 0.2;
+		double slop = 0.01;
+		double corr;
+		if (penetration - slop < 0.0)
+			corr = 0;
+		else
+			corr = penetration - slop;
+		
+		Vector2D correction = normal.scale(percent*corr);
+		a.setLocation((correction.subtractWith(a.getLocation())).returnNegative());
+		b.setLocation(correction.addWith(b.getLocation()));
+	}
 
 	private static Vector2D getNormal(Vector2D v, Vector2D u) {
 		Vector2D normal = subtract(v,u);
@@ -57,7 +92,7 @@ public class CircleVsCircle implements CollisionDetective {
 	}
 
 
-	private static void setVelocityToRatio(Circle a, Circle b, Vector2D impulse) {
+	private void setVelocityToRatio(Vector2D impulse) {
 		Vector2D scaledImpulse = impulse.scale(a.invMass);
 		Vector2D newVelocity = a.getVelocity().subtractWith(scaledImpulse);
 		a.setVelocity(newVelocity);

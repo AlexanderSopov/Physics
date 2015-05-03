@@ -1,11 +1,10 @@
 package GameObject;
 
-import java.awt.Color;
+
 import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.geom.Ellipse2D;
+
+
 import java.awt.geom.Rectangle2D;
-import java.awt.geom.RectangularShape;
 
 import Physics.Vector2D;
 
@@ -19,7 +18,7 @@ public class StaticBox extends GameObject {
 	
 	@Override
 	public void render(Graphics2D g) {
-		g.setColor(Color.WHITE);
+		super.render(g);
 		g.fill(getShape());
 	}
 

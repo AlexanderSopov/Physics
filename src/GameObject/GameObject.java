@@ -1,5 +1,6 @@
 package GameObject;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.RectangularShape;
@@ -13,15 +14,28 @@ public abstract class GameObject implements Observer {
 	public double restitution;
 	public double mass;
 	public double invMass;
+	private Color color;
 	//private static final GameThread gt = PhysicsTest.run;
 	
 	public GameObject(RectangularShape s, double restitution, int mass){
 		shape = s;
 		this.restitution=restitution;
 		this.mass = mass;
-		setInvMass(mass);;
+		setInvMass(mass);
+		color = setColor(mass);
 	}
 	
+	private Color setColor(int mass) {
+		int red;
+		if (mass > 255 || mass == 0)
+			red = 255;
+		else if (mass < 100)
+			red = 100;
+		else
+			red = mass;
+		return new Color(red, 25,10);
+	}
+
 	private void setInvMass(int m) {
 		if (mass == 0)
 			invMass = 0;
@@ -29,7 +43,11 @@ public abstract class GameObject implements Observer {
 			invMass = 1/(double)mass;
 	}
 
-	public abstract void render(Graphics2D g);
+	public void render(Graphics2D g){
+		g.setColor(color);
+	}
+	
+	
 	public void update(Observable o, Object arg){
 		try {
 			Graphics2D g = (Graphics2D)arg;
