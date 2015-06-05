@@ -37,14 +37,14 @@ public class Controller implements KeyListener {
 			case KeyEvent.VK_4:
 				otherSide();
 				break;
-			case KeyEvent.VK_P:
-				heavyMetalBallOfDoomNGlory();
-				break;
 			case KeyEvent.VK_D:
 				eraseMe();
 				break;
 			case KeyEvent.VK_C:
-				Main.c1.setMass(1000);
+				if(Main.c1.getMass() < 1000 )
+					Main.c1.setMass(1000);
+				else
+					Main.c1.setMass(75);
 				break;
 		}
 	}

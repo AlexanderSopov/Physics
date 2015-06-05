@@ -88,6 +88,9 @@ public abstract class GameObject implements Observer {
 	}
 
 	public abstract void setLocation(double x, double y);
-
+	
+	public int getMass() {
+		return (int)mass;
+	}
 
 }

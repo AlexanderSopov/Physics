@@ -63,4 +63,6 @@ public class Circle extends Entity {
 		shape.x=x;
 		shape.y=y;
 	}
+
+
 }
