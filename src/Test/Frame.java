@@ -5,13 +5,17 @@ import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 
+/**
+*
+* @author Alexander Sopov
+*/
 public class Frame  extends JFrame {
 		
-	public final static int WIDTH = 1600;
-	public final static int HEIGHT = 1000;
+	public final static int WIDTH = 1280;
+	public final static int HEIGHT = 750;
 		
 	public Frame(){
-		super("Yolo");
+		super("Test");
 		final GridLayout layout = new GridLayout(0, 2);
 		setLayout(layout);
 		setLocationRelativeTo(null);

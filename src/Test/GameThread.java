@@ -6,6 +6,10 @@ import java.awt.image.BufferStrategy;
 import java.util.Observable;
 
 
+/**
+*
+* @author Alexander Sopov
+*/
 public class GameThread extends Observable implements Runnable {
 
 	private Thread thread;
@@ -21,6 +25,7 @@ public class GameThread extends Observable implements Runnable {
 	public GameThread(){
 		thread = new Thread(this);
 		frame = new Frame();
+		frame.addKeyListener(new Controller());
 	}
 
 	/**

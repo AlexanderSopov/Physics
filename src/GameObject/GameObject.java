@@ -9,6 +9,10 @@ import java.util.Observer;
 
 import Vector.Vector2D;
 
+/**
+*
+* @author Alexander Sopov
+*/
 public abstract class GameObject implements Observer {
 	private RectangularShape shape;
 	public double restitution;
@@ -20,30 +24,31 @@ public abstract class GameObject implements Observer {
 	public GameObject(RectangularShape s, double restitution, int mass){
 		shape = s;
 		this.restitution=restitution;
-		this.mass = mass;
-		setInvMass(mass);
-		color = setColor(mass);
+		setMass(mass);
+		setColor();
 	}
 	
-	private Color setColor(int mass) {
+	private void setColor() {
 		int red;
 		if (mass > 255 || mass == 0)
 			red = 255;
 		else if (mass < 100)
 			red = 100;
 		else
-			red = mass;
-		return new Color(red, 25,10);
+			red = (int) mass;
+		color = new Color(red, 25,10);
 	}
 
-	private void setInvMass(int m) {
-		if (mass == 0)
+	public void setMass(int m) {
+		if (m == 0)
 			invMass = 0;
 		else
-			invMass = 1/(double)mass;
+			invMass = 1/(double)m;
+		mass = m;
 	}
 
 	public void render(Graphics2D g){
+		setColor();
 		g.setColor(color);
 	}
 	
@@ -75,7 +80,7 @@ public abstract class GameObject implements Observer {
 	
 	
 	//Setters
-	public void setRestitution(float r){
+	public void setRestitution(double r){
 		restitution = r;
 	}
 	public void setLocation(Point2D p){

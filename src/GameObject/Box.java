@@ -1,6 +1,9 @@
 package GameObject;
 
-
+/**
+*
+* @author Alexander Sopov
+*/
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
@@ -8,11 +11,11 @@ import Vector.Vector2D;
 
 public class Box extends Entity {
 	private Rectangle2D.Double shape;
-	public Box(int x, int y, int width, int height, float r, int mass) {
+	public Box(int x, int y, int width, int height, double r, int mass) {
 		super(new Rectangle2D.Double(x,y,width,height), r, mass);
 		setRestitution(r);
 		shape = (Rectangle2D.Double)getShape();
-		setVelocity(0,-1);
+		setVelocity(0,0);
 	}
 	
 	@Override
@@ -41,9 +44,9 @@ public class Box extends Entity {
 
 	@Override
 	public Vector2D getCenter() {
-		double x = (shape.getX() + shape.getWidth())/2;
-		double y = (shape.getY() + shape.getHeight())/2;
-		return getLocation().addWith(new Vector2D(x,y));
+		double x = shape.getX() + (shape.getWidth()/2);
+		double y = shape.getY() + (shape.getHeight()/2);
+		return new Vector2D(x,y);
 	}
 
 	
